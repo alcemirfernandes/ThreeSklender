@@ -6,6 +6,48 @@
   <meta charset="utf-8" />
 
   <link rel="stylesheet" type="text/css" href="Styles/styles.css" />
+  <script language="text/javascript" >
+   
+   //kamera vars
+   var ANGLEVIEW = 45,
+       ASPECTRATIO = window.innerWidth / window.innerHeight,
+       NEAR = 1,
+       FAR = 10000;
+   
+   var scene = new THREE.scene(),
+       camera= new THREE.PerspectiveCamera(ANGLEVIEW, ASPECTRATIO, NEAR, FAR),
+       renderer = new THREE.WebGLRenderer();// CanvasRenderer();
+       
+   camera.position.x = -5;
+   // camera.position = new THREE.Vector3(0,0,-5);
+  scene.add(camera);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  
+  function initalize() {
+
+   document.body.appendChild(renderer.domElement);
+
+   animate();
+  }
+  
+  
+function animate() {
+
+   requestAnimationFrame(animate);
+
+                  
+   render();
+}
+
+function render() {
+
+   
+
+   renderer.render(scene, camera);
+}
+  
+  
+  </script> 
  </head>
 
  <body>
