@@ -20,9 +20,49 @@
                                             cameraAttr.FAR);
    var scene = new THREE.Scene();
 
-   camera.position.z = 300;
-   renderer.setSize(sceneObj.WIDTH, sceneObj.HEIGHT);
-   canvasArea.appendChild(renderer.domElement);
+   var init = function()
+   {
+      camera.position.z = 300;
+      renderer.setSize(sceneObj.WIDTH, sceneObj.HEIGHT);
+      canvasArea.appendChild(renderer.domElement);
 
-   renderer.render(scene, camera);
+      renderer.render(scene, camera);
+   };
+
+   var mesh = (function()
+   {
+      return this;
+   }());
+
+   window.init = init;
+   window.mesh = mesh;
+
+   mesh.sphere = {
+      sphereAttr: {
+         radius: 50,
+         segments: 16,
+         rings: 16
+      },
+      create: function()
+      {
+         var sphereMaterial = new THREE.MeshLambertMaterial({ color: 0xCC0000 });
+         var create = new THREE.Mesh(new THREE.SphereGeometry(this.sphereAttr.radius, this.sphereAttr.segments, this.sphereAttr.rings), sphereMaterial);
+
+         scene.add(create);
+      }
+   };
+
+   mesh.cube = {
+      cubeAttr: {
+         color: "black"
+      }
+   };
 }());
+
+// init();
+console.log(mesh.sphere.sphereAttr);
+mesh.sphere.create();
+console.log(mesh.cube.cubeAttr.color);
+//console.log(createMesh.sphereAttr.rings);
+//console.log(createMesh.sphereAttr.segments);
+// createMesh.createSphere();
