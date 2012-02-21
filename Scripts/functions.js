@@ -1,6 +1,4 @@
-//(function()
-//{
-var t = function()
+(function()
 {
    var sceneObj = {
       WIDTH: 1024,
@@ -27,10 +25,4 @@ var t = function()
    canvasArea.appendChild(renderer.domElement);
 
    renderer.render(scene, camera);
-//}());
-};
-
-window.onload = function()
-{
-   t();
-};
+}());
