@@ -3,15 +3,14 @@
    "use strict";
 
    var threeObj = window.THREE;
-   console.log(threeObj);
 
    var canvasSize = {
-      WIDTH: 1024,
-      HEIGHT: 768
+         WIDTH: 1024,
+         HEIGHT: 768
    };
 
    var cameraAttr = {
-      VIEW_ANGLE: 45,
+      VIEW_ANGLE: 90,
       ASPECT: (canvasSize.WIDTH / canvasSize.HEIGHT),
       NEAR: 0.1,
       FAR: 10000
@@ -25,7 +24,17 @@
                                                cameraAttr.FAR);
    var scene = new threeObj.Scene();
 
-   var init = function()
+   var setLight = function()
+   {
+      var pointLight = new threeObj.PointLight(0xFFFFFF);
+      pointLight.position.x = 500;
+      pointLight.position.y = 300;
+      pointLight.position.z = 500;
+
+      scene.add(pointLight);
+   };
+
+   var render = function()
    {
       camera.position.z = 300;
       renderer.setSize(canvasSize.WIDTH, canvasSize.HEIGHT);
@@ -36,12 +45,12 @@
 
    var mesh = function(){ return this; };
 
-   mesh.meshMaterial = new threeObj.MeshLambertMaterial({ color: 0xCC00FF });
+   mesh.meshMaterial = new threeObj.MeshLambertMaterial({ color: 0x0000CC, wireframe: false });
    mesh.sphere = {
       sphereAttr: {
-         radius: 50,
-         segments: 16,
-         rings: 16
+         radius: 80,
+         segments: 200,
+         rings: 100
       },
       create: function()
       {
@@ -59,18 +68,18 @@
    };
 
    window.threeObj = threeObj;
-   window.init = init;
    window.mesh = mesh;
+   window.setLight = setLight;
+   window.render = render;
 }());
 
-/**/
-init();
-
+mesh.sphere.create();
+setLight();
+render();
+/** /
 console.log(mesh);
 console.log(mesh.meshMaterial);
 console.log(mesh.meshMaterial.color);
 console.log(mesh.sphere.sphereAttr);
-mesh.sphere.create();
-
 console.log(mesh.cube.cubeAttr.color);
 /**/
