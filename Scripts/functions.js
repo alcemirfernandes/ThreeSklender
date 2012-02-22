@@ -1,5 +1,10 @@
 (function()
 {
+   "use strict";
+
+   var threeObj = window.THREE;
+   console.log(threeObj);
+
    var sceneObj = {
       WIDTH: 1024,
       HEIGHT: 768
@@ -13,12 +18,12 @@
    };
 
    var canvasArea = document.getElementById("area");
-   var renderer = new THREE.WebGLRenderer();
-   var camera = new THREE.PerspectiveCamera(cameraAttr.VIEW_ANGLE,
-                                            cameraAttr.ASPECT,
-                                            cameraAttr.NEAR,
-                                            cameraAttr.FAR);
-   var scene = new THREE.Scene();
+   var renderer = new threeObj.WebGLRenderer();
+   var camera = new threeObj.PerspectiveCamera(cameraAttr.VIEW_ANGLE,
+                                               cameraAttr.ASPECT,
+                                               cameraAttr.NEAR,
+                                               cameraAttr.FAR);
+   var scene = new threeObj.Scene();
 
    var init = function()
    {
@@ -29,14 +34,9 @@
       renderer.render(scene, camera);
    };
 
-   var mesh = (function()
-   {
-      return this;
-   }());
+   var mesh = function(){ return this; };
 
-   window.init = init;
-   window.mesh = mesh;
-
+   mesh.meshMaterial = new threeObj.MeshLambertMaterial({ color: 0xCC00FF });
    mesh.sphere = {
       sphereAttr: {
          radius: 50,
@@ -45,24 +45,32 @@
       },
       create: function()
       {
-         var sphereMaterial = new THREE.MeshLambertMaterial({ color: 0xCC0000 });
-         var create = new THREE.Mesh(new THREE.SphereGeometry(this.sphereAttr.radius, this.sphereAttr.segments, this.sphereAttr.rings), sphereMaterial);
-
-         scene.add(create);
+         var sphereMesh = new threeObj.Mesh(new threeObj.SphereGeometry(this.sphereAttr.radius,
+                                                                        this.sphereAttr.segments,
+                                                                        this.sphereAttr.rings), mesh.meshMaterial);
+         scene.add(sphereMesh);
       }
    };
 
    mesh.cube = {
       cubeAttr: {
-         color: "black"
+         color: 0xCCDDCC
       }
    };
+
+   window.threeObj = threeObj;
+   window.init = init;
+   window.mesh = mesh;
 }());
 
-// init();
+/**/
+init();
+
+console.log(mesh);
+console.log(mesh.meshMaterial);
+console.log(mesh.meshMaterial.color);
 console.log(mesh.sphere.sphereAttr);
 mesh.sphere.create();
+
 console.log(mesh.cube.cubeAttr.color);
-//console.log(createMesh.sphereAttr.rings);
-//console.log(createMesh.sphereAttr.segments);
-// createMesh.createSphere();
+/**/
