@@ -5,14 +5,14 @@
    var threeObj = window.THREE;
    console.log(threeObj);
 
-   var sceneObj = {
+   var canvasSize = {
       WIDTH: 1024,
       HEIGHT: 768
    };
 
    var cameraAttr = {
       VIEW_ANGLE: 45,
-      ASPECT: (sceneObj.WIDTH / sceneObj.HEIGHT),
+      ASPECT: (canvasSize.WIDTH / canvasSize.HEIGHT),
       NEAR: 0.1,
       FAR: 10000
    };
@@ -28,7 +28,7 @@
    var init = function()
    {
       camera.position.z = 300;
-      renderer.setSize(sceneObj.WIDTH, sceneObj.HEIGHT);
+      renderer.setSize(canvasSize.WIDTH, canvasSize.HEIGHT);
       canvasArea.appendChild(renderer.domElement);
 
       renderer.render(scene, camera);
