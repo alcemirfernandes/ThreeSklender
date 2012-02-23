@@ -51,13 +51,6 @@
       scene.add(pointLight);
    };
 
-   var render = function()
-   {
-      requestAnimationFrame(render);
-      controller.update();
-      renderer.render(scene, camera);
-   };
-
    var mesh = function(){return this;};
 
    mesh.coordinateSystem = {
@@ -86,12 +79,9 @@
 
          scene.add(textMesh);
 
-         var x = new threeObj.Mesh(new threeObj.CubeGeometry(200, 2, 2, 2, 2, 2),
-                                   new threeObj.MeshBasicMaterial({ color: 0xff0000 })),
-             y = new threeObj.Mesh(new threeObj.CubeGeometry(2, 200, 2, 2, 2, 2),
-                                   new threeObj.MeshBasicMaterial({ color: 0x00ff00 })),
-             z = new threeObj.Mesh(new threeObj.CubeGeometry(2, 2, 200, 2, 2, 2),
-                                   new threeObj.MeshBasicMaterial({ color: 0x0000ff }));
+         var x = new threeObj.Mesh(new threeObj.CubeGeometry(200, 2, 2, 2, 2, 2), new threeObj.MeshBasicMaterial({ color: 0xff0000 })),
+             y = new threeObj.Mesh(new threeObj.CubeGeometry(2, 200, 2, 2, 2, 2), new threeObj.MeshBasicMaterial({ color: 0x00ff00 })),
+             z = new threeObj.Mesh(new threeObj.CubeGeometry(2, 2, 200, 2, 2, 2), new threeObj.MeshBasicMaterial({ color: 0x0000ff }));
 
          scene.add(x);
          scene.add(y);
@@ -126,12 +116,10 @@
    mesh.sphere = {
       create: function(sphereAttrObj)
       {
-         var sphereMesh = new threeObj.Mesh(new threeObj.SphereGeometry(sphereAttrObj.radius,
-                                                                        sphereAttrObj.segments,
+         var sphereMesh = new threeObj.Mesh(new threeObj.SphereGeometry(sphereAttrObj.radius, sphereAttrObj.segments,
                                                                         sphereAttrObj.rings), sphereAttrObj.materialObj);
-         sphereMesh.position = new threeObj.Vector3(sphereAttrObj.xCoord,
-                                                    sphereAttrObj.yCoord,
-                                                    sphereAttrObj.zCoord);
+         sphereMesh.position = new threeObj.Vector3(sphereAttrObj.xCoord, sphereAttrObj.yCoord, sphereAttrObj.zCoord);
+
          scene.add(sphereMesh);
       }
    };
@@ -139,12 +127,19 @@
    mesh.cube = {
       create: function(cubeAttrObj)
       {
-         var cubeMesh = new threeObj.Mesh(new threeObj.CubeGeometry(cubeAttrObj.width,
-                                                                    cubeAttrObj.height,
+         var cubeMesh = new threeObj.Mesh(new threeObj.CubeGeometry(cubeAttrObj.width, cubeAttrObj.height,
                                                                     cubeAttrObj.depth, 20, 20, 20), cubeAttrObj.materialObj);
          cubeMesh.position = new threeObj.Vector3(cubeAttrObj.xCoord, cubeAttrObj.yCoord, cubeAttrObj.zCoord);
+
          scene.add(cubeMesh);
       }
+   };
+
+   var render = function()
+   {
+      requestAnimationFrame(render);
+      controller.update();
+      renderer.render(scene, camera);
    };
 
    window.threeObj = threeObj;
