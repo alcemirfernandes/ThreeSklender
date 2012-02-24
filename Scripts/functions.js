@@ -200,7 +200,7 @@ var cubeAttributes = {
 };
 mesh.cube.create(cubeAttributes);
 
-var cubeAttributes = {
+cubeAttributes = {
    width: 2000,
    height: 20,
    depth: 2000,
