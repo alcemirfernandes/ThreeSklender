@@ -5,8 +5,8 @@
    var threeObj = window.THREE;
 
    var canvasSize = {
-         WIDTH: 1024,
-         HEIGHT: 768
+         WIDTH: window.innerWidth,
+         HEIGHT: window.innerHeight
    };
 
    var cameraAttr = {
@@ -16,7 +16,7 @@
       FAR: 10000
    };
 
-   var canvasArea = document.getElementById("area");
+   var canvasArea = document.getElementsByTagName("body")[0];
    var renderer = new threeObj.WebGLRenderer();
    renderer.setSize(canvasSize.WIDTH, canvasSize.HEIGHT);
    canvasArea.appendChild(renderer.domElement);
@@ -25,7 +25,7 @@
 
    camera.position.x = 0;
    camera.position.y = 1000;
-   camera.position.z = -600;
+   camera.position.z = 600;
    // camera.lookAt(new threeObj.Vector3(100, 300, 0));
 
    var scene = new threeObj.Scene();
@@ -53,35 +53,62 @@
 
    var mesh = function(){return this;};
 
+   mesh.text = {
+      create: function(text, textCoordsObj, textAttrObj, textMaterialObj)
+      {
+         var text3d = new threeObj.TextGeometry(text, textAttrObj);
+         text3d.computeBoundingBox();
+
+         var textMesh = new threeObj.Mesh(text3d, textMaterialObj);
+         textMesh.position.x = textCoordsObj.xCoords;
+         textMesh.position.y = textCoordsObj.yCoords;
+         textMesh.position.z = textCoordsObj.zCoords;
+
+         scene.add(textMesh);
+      }
+   };
+
    mesh.coordinateSystem = {
       create: function()
       {
+         var textAttrObj = {
+            size: 8,
+            height: 2,
+            font: "gentilis"
+         };
 
+         var textCoords = {
+            xCoords: 105,
+            yCoords: 0,
+            zCoords: 0
+         };
+         var materialObj = new threeObj.MeshBasicMaterial({ color: 0xff0000, overdraw: true });
+         mesh.text.create("X+", textCoords, textAttrObj, materialObj);
 
+         textCoords = {
+            xCoords: 0,
+            yCoords: 105,
+            zCoords: 0
+         };
+         materialObj = new threeObj.MeshBasicMaterial({ color: 0x00ff00, overdraw: true });
+         mesh.text.create("Y+", textCoords, textAttrObj, materialObj);
 
-//         var text = new threeObj.Mesh(new threeObj.TextGeometry("blaaaaaaaaaaaaaa"),
-//                                      new threeObj.MeshBasicMaterial({ color: 0xff0000 }));
+         textCoords = {
+            xCoords: 0,
+            yCoords: 0,
+            zCoords: -105
+         };
+         materialObj = new threeObj.MeshBasicMaterial({ color: 0x0000ff, overdraw: true });
+         mesh.text.create("Z-", textCoords, textAttrObj, materialObj);
 
+         // Koordinatensystem.
+         var x = new threeObj.Mesh(new threeObj.CubeGeometry(100, 2, 2), new threeObj.MeshBasicMaterial({ color: 0xff0000 })),
+             y = new threeObj.Mesh(new threeObj.CubeGeometry(2, 100, 2), new threeObj.MeshBasicMaterial({ color: 0x00ff00 })),
+             z = new threeObj.Mesh(new threeObj.CubeGeometry(2, 2, 100), new threeObj.MeshBasicMaterial({ color: 0x0000ff }));
 
-         var text = new threeObj.TextGeometry("blaaaaaaaaaaaaaa", { size: 2 });
-         text.computeBoundingBox();
-         text.computeVertexNormals();
-
-         var textMesh = new threeObj.Mesh( text, new threeObj.MeshFaceMaterial({ color: 0xff0000 }) );
-         textMesh.position.x = 22;
-         textMesh.position.y = 0;
-         textMesh.position.z = 0;
-
-//         textMesh1.rotation.x = 0;
-//         textMesh1.rotation.y = Math.PI * 2;
-
-
-
-         scene.add(textMesh);
-
-         var x = new threeObj.Mesh(new threeObj.CubeGeometry(200, 2, 2, 2, 2, 2), new threeObj.MeshBasicMaterial({ color: 0xff0000 })),
-             y = new threeObj.Mesh(new threeObj.CubeGeometry(2, 200, 2, 2, 2, 2), new threeObj.MeshBasicMaterial({ color: 0x00ff00 })),
-             z = new threeObj.Mesh(new threeObj.CubeGeometry(2, 2, 200, 2, 2, 2), new threeObj.MeshBasicMaterial({ color: 0x0000ff }));
+         x.position = new threeObj.Vector3(50, 0, 0);
+         y.position = new threeObj.Vector3(0, 50, 0);
+         z.position = new threeObj.Vector3(0, 0, -50);
 
          scene.add(x);
          scene.add(y);
@@ -128,7 +155,7 @@
       create: function(cubeAttrObj)
       {
          var cubeMesh = new threeObj.Mesh(new threeObj.CubeGeometry(cubeAttrObj.width, cubeAttrObj.height,
-                                                                    cubeAttrObj.depth, 20, 20, 20), cubeAttrObj.materialObj);
+                                                                    cubeAttrObj.depth), cubeAttrObj.materialObj);
          cubeMesh.position = new threeObj.Vector3(cubeAttrObj.xCoord, cubeAttrObj.yCoord, cubeAttrObj.zCoord);
 
          scene.add(cubeMesh);
@@ -151,38 +178,38 @@
 mesh.coordinateSystem.create();
 mesh.grid.create({ color: 0xCCCCCC, opacity: 0.2 });
 
-//var sphereAttributes = {
-//   rings: 100,
-//   segments: 2,
-//   radius: 200,
-//   xCoord: 100,
-//   yCoord: 100,
-//   zCoord: 50,
-//   materialObj: new threeObj.MeshLambertMaterial({ color: 0x00CC00, wireframe: true })
-//};
-//mesh.sphere.create(sphereAttributes);
-//
-//var cubeAttributes = {
-//   width: sphereAttributes.radius * 3,
-//   height: sphereAttributes.radius * 3,
-//   depth: sphereAttributes.radius * 3,
-//   xCoord: sphereAttributes.xCoord,
-//   yCoord: sphereAttributes.yCoord,
-//   zCoord: sphereAttributes.zCoord,
-//   materialObj: new threeObj.MeshBasicMaterial({color: 0xFFFFFF, wireframe: true})
-//};
-//mesh.cube.create(cubeAttributes);
+var sphereAttributes = {
+   rings: 100,
+   segments: 2,
+   radius: 20,
+   xCoord: 100,
+   yCoord: 100,
+   zCoord: 50,
+   materialObj: new threeObj.MeshLambertMaterial({ color: 0x00CC00, wireframe: true })
+};
+mesh.sphere.create(sphereAttributes);
 
-//cubeAttributes = {
-//   width: 2000,
-//   height: 20,
-//   depth: 2000,
-//   xCoord: 0,
-//   yCoord: 0,
-//   zCoord: 0,
-//   materialObj: new threeObj.MeshLambertMaterial({color: 0xAAFF22, wireframe: false})
-//};
-//mesh.cube.create(cubeAttributes);
+var cubeAttributes = {
+   width: sphereAttributes.radius * 3,
+   height: sphereAttributes.radius * 3,
+   depth: sphereAttributes.radius * 3,
+   xCoord: sphereAttributes.xCoord,
+   yCoord: sphereAttributes.yCoord,
+   zCoord: sphereAttributes.zCoord,
+   materialObj: new threeObj.MeshBasicMaterial({color: 0xFFFFFF, wireframe: true})
+};
+mesh.cube.create(cubeAttributes);
+
+var cubeAttributes = {
+   width: 2000,
+   height: 20,
+   depth: 2000,
+   xCoord: 1000,
+   yCoord: 10,
+   zCoord: -1000,
+   materialObj: new threeObj.MeshLambertMaterial({color: 0xAAFF22, wireframe: false})
+};
+mesh.cube.create(cubeAttributes);
 
 setLight(-500, 500, 0, 0xFFFFFF);
 render();

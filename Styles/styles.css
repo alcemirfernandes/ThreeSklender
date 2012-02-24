@@ -1,7 +1,7 @@
-#area
+body
 {
+   margin: 0;
+   padding: 0;
    background-color: #2B2B2B;
-   border: .0625em solid #000;
-   width: 64em;
-   height: 48em;
+   overflow: hidden;
 }
