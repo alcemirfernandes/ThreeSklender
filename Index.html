@@ -23,20 +23,34 @@
                   <output id="objectType"></output>
                </li>
                <li>
+                  <label for="material">Materialtype:</label>
+                  <select id="material">
+                     <option>MeshBasicMaterial</option>
+                     <option>MeshLambertMaterial</option>
+                  </select>
+               </li>
+               <li>
                   <label for="xPosition">X - position:</label>
-                  <input type="number" id="xPosition" />
+                  <!-- Will not displayed as number boxes in Firefox <= 10-->
+                  <input type="number" id="xPosition" value="0" />
                </li>
                <li>
                   <label for="yPosition">Y - position:</label>
-                  <input type="number" id="yPosition" />
+                  <input type="number" id="yPosition" value="0" />
                </li>
                <li>
                   <label for="zPosition">Z - position:</label>
                   <input type="number" id="zPosition" value="0" />
                </li>
             </ul>
+            <ul id="sphereDependencies">
+               <li></li>
+            </ul>
+            <ul id="cubeDependencies">
+               <li></li>
+            </ul>
          </div>
-         <!--         <footer id="windowFooter"></footer>-->
+         <!-- <footer id="windowFooter"></footer>-->
       </div>
       <!--  <script type="text/javascript" src="Scripts/jquery-1.7.1.min.js"></script>-->
       <script type="text/javascript" src="Scripts/three.min.js"></script>

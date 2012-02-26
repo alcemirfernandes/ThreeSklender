@@ -1,4 +1,4 @@
-body, ul, a, div, header, label
+body, ul, a, div, header, label, select, option
 {
    -moz-user-select: none;
 	-khtml-user-select: none;
@@ -6,8 +6,6 @@ body, ul, a, div, header, label
 
 body
 {
-   margin: 0;
-   padding: 0;
    background-color: #2B2B2B;
    overflow: hidden;
    width: 100%;
@@ -28,7 +26,7 @@ li
    margin-bottom: .5em;
 }
 
-li input, li output
+li input, li output, li select
 {
    float: right;
    margin-right: 10em;
@@ -40,6 +38,18 @@ a
    color: #eee;
    font-family: Comic Sans MS, sans-serif;
    outline: none;
+}
+
+select
+{
+   height: 1.8em;
+   width: 11.3em;
+}
+
+input, output
+{
+   height: 1.4em;
+   width: 11em;
 }
 
 #area
