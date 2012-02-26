@@ -1,7 +1,123 @@
+body, ul, a, div, header, label
+{
+   -moz-user-select: none;
+	-khtml-user-select: none;
+}
+
 body
 {
    margin: 0;
    padding: 0;
    background-color: #2B2B2B;
    overflow: hidden;
+   width: 100%;
+   height: 100%;
+   color: #eee;
+   -moz-user-select: none;
+	-khtml-user-select: none;
+}
+
+ul
+{
+   list-style: none;
+   padding-left: 1.5em;
+}
+
+li
+{
+   margin-bottom: .5em;
+}
+
+li input, li output
+{
+   float: right;
+   margin-right: 10em;
+}
+
+a
+{
+   text-decoration: none;
+   color: #eee;
+   font-family: Comic Sans MS, sans-serif;
+   outline: none;
+}
+
+#area
+{
+   width: 100%;
+   height: 100%;
+}
+
+.windowStyle, #objectWindow > header > a
+{
+   border-radius: .3em;
+}
+
+.windowStyle
+{
+   background-color: #333;
+   position: absolute;
+   top: 2em;
+   left: 2em;
+   border: .0625em solid #666;
+   width: 25em;
+   box-shadow: 0 0 .15em .15em #666;
+   -moz-box-shadow: 0 0 .15em .15em #666;
+   -webkit-box-shadow: 0 0 .15em .15em #666;
+}
+
+#objectWindow > header
+{
+   font-weight: bold;
+   border-bottom: .0625em solid #666;
+   padding-bottom: .5em;
+   border-radius: .3em .3em 0 0;
+
+   /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+   background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2FlYmNiZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNmU3Nzc0IiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMzElIiBzdG9wLWNvbG9yPSIjNmU3Nzc0IiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iNjIlIiBzdG9wLWNvbG9yPSIjMGEwZTBhIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFjMWUxYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwYTA4MDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+");
+   background: -moz-linear-gradient(top, rgba(174,188,191,1) 0%, rgba(110,119,116,1) 0%, rgba(110,119,116,1) 31%, rgba(10,14,10,1) 62%, rgba(28,30,28,1) 100%, rgba(10,8,9,1) 100%); /* FF3.6+ */
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(174,188,191,1)), color-stop(0%,rgba(110,119,116,1)), color-stop(31%,rgba(110,119,116,1)), color-stop(62%,rgba(10,14,10,1)), color-stop(100%,rgba(28,30,28,1)), color-stop(100%,rgba(10,8,9,1))); /* Chrome, Safari4+ */
+   background: -webkit-linear-gradient(top, rgba(174,188,191,1) 0%,rgba(110,119,116,1) 0%,rgba(110,119,116,1) 31%,rgba(10,14,10,1) 62%,rgba(28,30,28,1) 100%,rgba(10,8,9,1) 100%); /* Chrome10+, Safari5.1+ */
+   background: -o-linear-gradient(top, rgba(174,188,191,1) 0%,rgba(110,119,116,1) 0%,rgba(110,119,116,1) 31%,rgba(10,14,10,1) 62%,rgba(28,30,28,1) 100%,rgba(10,8,9,1) 100%); /* Opera 11.10+ */
+   background: -ms-linear-gradient(top, rgba(174,188,191,1) 0%,rgba(110,119,116,1) 0%,rgba(110,119,116,1) 31%,rgba(10,14,10,1) 62%,rgba(28,30,28,1) 100%,rgba(10,8,9,1) 100%); /* IE10+ */
+   background: linear-gradient(top, rgba(174,188,191,1) 0%,rgba(110,119,116,1) 0%,rgba(110,119,116,1) 31%,rgba(10,14,10,1) 62%,rgba(28,30,28,1) 100%,rgba(10,8,9,1) 100%); /* W3C */
+}
+
+#objectWindow > footer
+{
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALCAYAAACprHcmAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAE5JREFUeNpi%2Bf%2F%2FPwMxwNvb24GJWIX6%2Bvr7mYhVePHiRUcmYhUCuQeYiFUIxNjdjE0hVjfjUojhZnwKUdxMSCHczcQoBLuZWIUgPkCAAQCFeVrlOKc1%2BgAAAABJRU5ErkJggg%3D%3D") no-repeat scroll 7px 7px transparent;
+    right: 0;
+    bottom: 0;
+    cursor: se-resize;
+    width: 1.25em;
+    height: 1.25em;
+    position: absolute;
+}
+
+#objectWindow > header:hover
+{
+   cursor: move;
+}
+
+#objectWindow div
+{
+   border-top: .0625em solid #000;
+   color: #ccc;
+}
+
+#objectWindow > header > span
+{
+   padding: .5em 0 .5em .5em;
+}
+
+#objectWindow > header > a
+{
+   float: right;
+   padding: .2em .5em .2em .5em;
+   border-left: .0625em solid #666
+}
+
+#objectWindow > header > a:hover
+{
+   background-color: #888;
 }

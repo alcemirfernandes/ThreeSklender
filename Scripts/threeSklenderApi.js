@@ -4,9 +4,13 @@
 
    var threeObj = window.THREE;
 
+   /*
+    * If you have the browser not in max mode and you will resize it to max,
+    * the content inside the canvas looks horrible. So browser in max-mode is required.
+    */
    var canvasSize = {
          WIDTH: window.innerWidth,
-         HEIGHT: window.innerHeight
+         HEIGHT: window.outerHeight
    };
 
    var cameraAttr = {
@@ -16,10 +20,9 @@
       FAR: 10000
    };
 
-   var canvasArea = document.getElementsByTagName("body")[0];
-   var renderer = new threeObj.WebGLRenderer();
+   var canvasArea = document.getElementById("area");
+   var renderer = new threeObj.WebGLRenderer({antialias: true, canvas: canvasArea});
    renderer.setSize(canvasSize.WIDTH, canvasSize.HEIGHT);
-   canvasArea.appendChild(renderer.domElement);
 
    var camera = new threeObj.PerspectiveCamera(cameraAttr.VIEW_ANGLE, cameraAttr.ASPECT, cameraAttr.NEAR, cameraAttr.FAR);
 
@@ -101,10 +104,13 @@
          materialObj = new threeObj.MeshBasicMaterial({ color: 0x0000ff, overdraw: true });
          mesh.text.create("Z-", textCoords, textAttrObj, materialObj);
 
-         // Koordinatensystem.
-         var x = new threeObj.Mesh(new threeObj.CubeGeometry(100, 2, 2), new threeObj.MeshBasicMaterial({ color: 0xff0000 })),
-             y = new threeObj.Mesh(new threeObj.CubeGeometry(2, 100, 2), new threeObj.MeshBasicMaterial({ color: 0x00ff00 })),
-             z = new threeObj.Mesh(new threeObj.CubeGeometry(2, 2, 100), new threeObj.MeshBasicMaterial({ color: 0x0000ff }));
+         // Coordinatesystem.
+         var x = new threeObj.Mesh(new threeObj.CubeGeometry(100, 2, 2),
+                                   new threeObj.MeshBasicMaterial({ color: 0xff0000 })),
+             y = new threeObj.Mesh(new threeObj.CubeGeometry(2, 100, 2),
+                                   new threeObj.MeshBasicMaterial({ color: 0x00ff00 })),
+             z = new threeObj.Mesh(new threeObj.CubeGeometry(2, 2, 100),
+                                   new threeObj.MeshBasicMaterial({ color: 0x0000ff }));
 
          x.position = new threeObj.Vector3(50, 0, 0);
          y.position = new threeObj.Vector3(0, 50, 0);

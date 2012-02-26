@@ -1,19 +1,48 @@
 <!DOCTYPE html>
 
 <html>
- <head>
-  <title>ThreeSklender - First browser 3D editor.</title>
-  <meta charset="utf-8" />
+   <head>
+      <title>ThreeSklender - First browser 3D editor.</title>
+      <meta charset="utf-8" />
 
-  <link rel="stylesheet" type="text/css" href="Styles/styles.css" />
- </head>
+      <link rel="stylesheet" type="text/css" href="Styles/styles.css" />
+   </head>
 
- <body>
-  <!-- <div id="area"></div> -->
-
-<!--  <script type="text/javascript" src="Scripts/jquery-1.7.1.min.js"></script>-->
-  <script type="text/javascript" src="Scripts/three.min.js"></script>
-  <script type="text/javascript" src="Scripts/Fonts/gentilis_regular.typeface.js"></script>
-  <script type="text/javascript" src="Scripts/functions.js"></script>
- </body>
+   <body>
+      <canvas id="area"></canvas>
+      <div id="objectWindow" class="windowStyle">
+         <header id="windowHeader">
+            <span>Object properties</span>
+            <a href="#">X</a>
+            <a href="#">_</a>
+         </header>
+         <div>
+            <ul>
+               <li>
+                  <label for="objectType">Meshtype:</label>
+                  <output id="objectType"></output>
+               </li>
+               <li>
+                  <label for="xPosition">X - position:</label>
+                  <input type="number" id="xPosition" />
+               </li>
+               <li>
+                  <label for="yPosition">Y - position:</label>
+                  <input type="number" id="yPosition" />
+               </li>
+               <li>
+                  <label for="zPosition">Z - position:</label>
+                  <input type="number" id="zPosition" value="0" />
+               </li>
+            </ul>
+         </div>
+         <!--         <footer id="windowFooter"></footer>-->
+      </div>
+      <!--  <script type="text/javascript" src="Scripts/jquery-1.7.1.min.js"></script>-->
+      <script type="text/javascript" src="Scripts/three.min.js"></script>
+      <script type="text/javascript" src="Scripts/Fonts/gentilis_regular.typeface.js"></script>
+      <script type="text/javascript" src="Scripts/threeSklenderApi.js"></script>
+      <script type="text/javascript" src="Scripts/draggable.min.js"></script>
+      <script type="text/javascript" src="Scripts/uiApi.js"></script>
+   </body>
 </html>
